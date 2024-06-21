@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="Сайт - портфолио Артура Гапоника">
+        <title>Портфолио Артура Гапоника</title>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+        
+        <link href="style-flex.css" rel="stylesheet">
+
+        <script src="script.js"></script>
+
+
+        
+    </head>
+    <body>
+
+        
+        <body>
+            <div class="fixed-form">
+                <div class="form-header">
+                    ЗАКАЗАТЬ ЗВОНОК
+                </div>
+                <form action="#" method="post">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="phone">Номер телефона</label>
+                    <input type="tel" id="phone" name="phone" required pattern="^\+?[0-9\s\-\(\)]+$">
+                    
+                    <div class="consent">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Я даю согласие на обработку персональных данных в соответствии с <a href="#">политикой конфиденциальности</a></label>
+                    </div>
+                    
+                    <button type="submit">ЗАКАЗАТЬ ЗВОНОК</button>
+                </form>
+            </div>
+        </body>
+        
+        <!--верхняя панель сайта-->
+        <header class="main-header">
+            <!--Навигация сайта-->
+            <div main-navigation-wrapper>
+                <nav class="main-navigation">
+                    <!--неупорядоченный список-->
+                    <ul>
+                        <!--ссылки на html якори-->
+                        <li><a href="#section1">Главная</a></li>
+                        <li><a href="#section2">Обо мне</a></li>
+                        <li><a href="#section3">Услуги</a></li>
+                        <li><a href="#section4">Портфолио</a></li>
+                        <li><a href="#section5">Контакты</a></li>
+                        <li><a href="lr10.html">10-12</a></li>
+                        <li><a href="lr13.html">13-14</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="container">
+                <!--html-якорь-->
+                <h1  id="section1">Гапоник А.Т.</h1>
+                
+                <h3>Приветствую вас на моем сайте - визитке, здесь я веб-дезайнер,
+                    программист, строитель, почти родитель - мастер на все руки</h3>
+                    
+                    <a class="button" type="button" href="order.html" target="_blank">Заказать работу</a>
+
+            </section>
+
+            
+            <section>
+                
+                <h2 class="features" id="section2">Обо мне</h2>
+                <ul class="features-list">
+                    <li class="feature-item">
+                    
+                        <h3>Низкие цены</h3>
+                        <p>Идеальное соотношение - цена качество</p>
+                        
+                    </li>
+                    <li class="feature-item">
+                        
+                        
+                        <h3>Высокое качество</h3>
+                        <p>Сотни довольных клиентов</p>
+                        
+                    </li>
+                    <li class="feature-item">
+                        
+                        <h3>Быстрое выполнение</h3>
+                        <p>Кротчайшие сроки</p>
+                        
+                    </li>
+                </ul>
+        
+                
+                
+                
+                
+            </section>
+
+
+            <div class="contain">
+                <section class="gallery">
+                    <img src="arthur.jpg" width="400" height="635" alt="Артур">
+                </section>
+                <section class="services">
+                    <h1 class="uslugi" id="section3">Услуги</h1>
+                    <ul class="uslugi-list">
+                        <li class="uslugi-item">
+                            <h2>Веб-сайты</h2>
+                            <ul>
+                                <li><h3>Создание сайтов-визиток</h3></li>
+                                <li><h3>Создание интернет магазинов</h3></li>
+                                <li><h3>Портфолио компании</h3></li>
+                            </ul>
+                        </li>
+                        <li class="uslugi-item">
+                            <h2>Программирование</h2>
+                            <ul>
+                                <li><h3>Разработка программ на C#</h3></li>
+                                <li><h3>Разработка программ на Python</h3></li>
+                                <li><h3>Разработка игровых приложений</h3></li>
+                            </ul>
+                        </li>
+                        <li class="uslugi-item">
+                            <h2>Рисование</h2>
+                            <ul>
+                                <li><h3>Создание логотипов</h3></li>
+                                <li><h3>Работа с Adobe Photoshop</h3></li>
+                                <li><h3>Работа с Cinema4D и Blender</h3></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="portfolio.html">Подробнее</a>
+                </section>
+            </div>
+
+            
+        
+            <div class="product-container">
+                <img src="img/bed.avif  " alt="Product Image" id="productImage" width="400" height="400">
+
+                <div class="product-form" id="productForm">
+                    <span class="close" id="closeForm">&times;</span>
+                    <div class="product-details">
+                        <img src="img/bed.avif" alt="Product Image" id="productImage">
+                        <h2>Кровать Льери 160 Velvet Sand</h2>
+                        
+                        <p class="price"><span class="discount-price">1326 руб.</span> <span class="original-price">1489 руб.</span> <span class="discount">-10%</span></p>
+                        <div class="dimensions">
+                            <div class="firstline">
+                            <h3>Размеры</h3>
+                            <p>Длина: 225 см</p>
+                            <p>Ширина: 179 см</p>
+                            <p>Высота: 112 см</p>
+                            </div>
+                            <div class="secondline">
+                            <h3>Спальное место</h3>
+                            <p>Длина: 200 см</p>
+                            <p>Ширина: 160 см</p>
+                            </div>
+                        </div>
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="more-details">Подробнее о товаре</button>
+                    </div>
+                </div>
+            </div>
+            
+
+            <section>
+               
+                
+                <h2 class="portfolio" id="section4">Портфолио</h2>
+
+                
+                
+                
+                <div class="slider-container">
+                
+                    <div class="slider">
+                        <div class="slide"><img src="hasbi.jpg" alt="Image 1"></div>
+                        <div class="slide"><img src="hasbi.jpg" alt="Image 2"></div>
+                        <div class="slide"><img src="hasbi.jpg" alt="Image 3"></div>
+                        <div class="slide"><img src="hasbi.jpg" alt="Image 4"></div>
+                        <div class="slide"><img src="hasbi.jpg" alt="Image 5"></div>
+                        <div class="slide"><img src="hasbi.jpg" alt="Image 6"></div>
+                    </div>
+                    <button class="slider-btn slider-btn-left" onclick="prevSlide()">←</button>
+                    <button class="slider-btn slider-btn-right" onclick="nextSlide()">→</button>
+                </div>
+                
+                
+                
+                
+            </section>
+            <!--<section>
+                
+                    
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+            
+            
+               
+                <script>
+                    var scene, camera, renderer, cube;
+
+                    function init() 
+                    {
+                        scene = new THREE.Scene();
+                        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+                        renderer = new THREE.WebGLRenderer();
+                        renderer.setSize(window.innerWidth, window.innerHeight);
+                        document.body.appendChild(renderer.domElement);
+
+                        var geometry = new THREE.BoxGeometry(1, 1, 1);
+                        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+                        cube = new THREE.Mesh(geometry, material);
+                        scene.add(cube);
+
+                        // Добавляем белый фон
+                        var whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+                        var whitePlane = new THREE.Mesh(new THREE.PlaneGeometry(90, 100), whiteMaterial);
+                        whitePlane.position.z = -5; // Перемещаем плоскость назад, чтобы она была за кубом
+                        scene.add(whitePlane);
+
+                        camera.position.z = 5;
+                    }
+
+                    function animate() {
+                        requestAnimationFrame(animate);
+                        cube.rotation.x += 0.01;
+                        cube.rotation.y += 0.01;
+                        renderer.render(scene, camera);
+                    }
+
+                    init();
+                    animate();
+                </script>
+            </section> -->
+
+            <script src="script.js"></script>
+        </main>
+
+
+
+        <footer class="main-footer">
+        <h1 id="section5"></h1>
+        <div class="footer-contacts">
+            <h2 >Используйте для связи</h2>
+            <ul>
+                <li>
+                    <br>Тел: +375 33 6612488
+                    <br>E-mail: gaponik.arthur@gmail.com
+                    <br>github: jordjclouni
+                </li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <p>Давайте дружить!</p>
+            <ul>
+                <li><a class="social-button" href="https://vk.com/skankhunt___42">Вконтакте</a></li>
+                <li><a class="social-button" href="https://t.me/johnyclouni">Телеграм</a></li>
+                <li><a class="social-button" href="https://www.instagram.com/jajebaszyrap/">Инстаграм</a></li>
+                <li><a class="social-button" href="https://github.com/jordjclouni">Github</a></li>
+            </ul>
+        </div>
+        <p class="footer-copyright">
+            Разработано: Артуром Гапоником
+        </p>
+        </footer>
+    </body>
+</html>

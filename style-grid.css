@@ -1,0 +1,495 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Rubik", sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 500;
+
+    color: black;
+    text-transform: uppercase;
+
+
+
+    background-color: antiquewhite;
+    background-image: url(# );
+    background-position: center;
+}
+
+
+
+
+
+
+
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+   
+}
+/* форма*/
+.product-container {
+    position: relative;
+}
+.product-container {
+    margin-bottom: 120px;
+}
+
+.product-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 125%;
+    background-color: #fff;
+    padding: 20px;
+    display: none;
+}
+
+.product-container:hover .product-form {
+    display: block;
+}
+
+.product-form .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.product-form .close:hover {
+    color: red;
+}
+
+.product-details {
+    text-align: center;
+}
+
+.product-details img {
+    width: 40%;
+    height: 240px;
+    object-fit: cover;
+    
+}
+
+.product-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-details .price {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.product-details .price .discount-price {
+    font-size: 24px;
+    color: red;
+}
+
+.product-details .price .original-price {
+    text-decoration: line-through;
+}
+
+.product-details .price .discount {
+    font-size: 18px;
+    color: red;
+}
+
+
+.firstline, .secondline {
+    text-align: center;
+}
+
+.firstline h3, .secondline h3 {
+    display: block;
+    margin: 0px;
+}
+
+.firstline p, .secondline p {
+    display: inline-block;
+    margin: 5px;
+}
+
+
+
+
+
+.add-to-cart, .more-details {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.add-to-cart:hover {
+    background-color: #3e8e41;
+}
+
+.more-details {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.more-details:hover {
+    background-color: #0069d9;
+}
+
+  
+
+
+
+  .fixed-form {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #800080; /* purple background */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.form-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="tel"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.consent {
+    margin-bottom: 10px;
+}
+
+.consent input {
+    margin-right: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #c71585; /* deeper purple button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #b22222; /* hover effect */
+}
+
+h2.features {
+    font-family: "Overpass", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-navigation {
+    font-size: 24px;
+    line-height: 30px;
+    color: rgb(0, 0, 0);
+
+    background-color: antiquewhite;
+    display: grid;
+    grid-template-columns: 1fr; /* Одна колонка */
+    gap: 20px; /* Отступы между элементами */
+    justify-items: center; /* Выравнивание по горизонтали */
+    margin: 20px; /* Отступы вокруг контейнера */
+    
+}
+.main-navigation a{ 
+    color: black;
+    
+    
+    font: inherit;
+    font-size: 20px;
+    text-align: center;
+    
+    color: white;
+    vertical-align: middle;
+    text-transform: uppercase;
+    background-color: black;
+
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: #b9954e; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: background-color 0.3s;
+}
+.main-navigation a:hover {
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+   }
+
+
+.main-navigation a:focus{background-color: antiquewhite;}
+
+
+.main-navigation {
+    display: grid; /* Используем grid-контейнер */
+    place-content: center; /* Выравниваем элементы по центру как по горизонтали, так и по вертикали */
+}
+
+.main-navigation ul {
+  
+        list-style-type: none; /* Убираем маркеры списка */
+        display: grid; /* Используем grid-контейнер для списка */
+        justify-content: center; /* Выравниваем элементы по центру */
+        gap: 10px; /* Отступ между элементами списка */
+        padding: 0; /* Убираем внутренние отступы */
+        grid-auto-flow: column; /* Устанавливаем направление расположения элементов по колонкам */
+  
+    
+}
+
+.main-navigation li {
+    margin: 0 10px; /* Добавляем отступы между пунктами меню */
+}
+
+.main-navigation a {
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    color: #000000; /* Устанавливаем цвет текста для ссылок */
+}
+.container {
+    list-style-type: none; /* Убираем маркеры списка */
+    display: grid; /* Используем grid-контейнер для списка */
+    gap: 10px; /* Отступ между элементами списка */
+    justify-content: center; /* Выравниваем элементы по центру */
+    
+}
+
+
+
+.container {
+    display: grid;
+    place-items: center; /* Центрирование содержимого по вертикали и горизонтали */
+
+}
+
+.button  {
+    margin-top: 10px; /* Отступ сверху для кнопки */
+}
+
+.container h3 {
+    display: grid;
+    justify-content: space-between;
+    
+     
+}
+
+.container .button  {
+    margin-top: 10px; /* Подберите нужный вам отступ сверху */
+}
+.button {
+    
+    border: 1px solid #000;
+    font: inherit;
+    font-size: 20px;
+    text-align: center;
+    
+    color: white;
+    vertical-align: middle;
+    text-transform: uppercase;
+    background-color: black;
+
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #b9954e; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    border-radius: 20px; /* Скругление углов */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: background-color 0.3s;
+
+
+}
+.button:hover {
+    background-color: #a8bcc3;
+}
+
+
+.features {
+    
+    text-align: center;
+    font-size: 50px; 
+    color: rgb(102, 91, 52); }
+
+.features-list {list-style: none;
+    display: grid;
+    justify-content: space-between; /* Равномерное распределение между элементами */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Автоматическое подгонка колонок с минимальной шириной 100px */
+
+    
+    
+}
+.feature-item{text-align: center;}
+.feature-item h3{
+    font-size: 30px;
+    line-height: 22px;
+}
+.feature-item p{
+    font-size: 18px;
+}
+
+
+.contain {
+    display: grid; /* Используем grid */
+    grid-template-columns: auto auto 1fr; /* Определяем три столбца, первые два автоматические, третий занимает оставшееся пространство */
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.gallery {
+    margin-right: 10px;
+}
+
+.services {
+    flex-grow: 1; /* Удаляем, так как grid не использует flex-grow */
+}
+
+.contain h1 {
+    font-family: inherit;
+    font-size: 32px;
+    margin: 0 0 10px 0;
+}
+
+.contain h2 {
+    font-family: inherit;
+    font-size: 26px;
+}
+
+
+.portfolio {
+    display: grid; /* Используем grid */
+    place-items: center; /* Выравниваем содержимое по центру как по горизонтали, так и по вертикали */
+    font-family: "Overpass", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    /* Занимать всю высоту видимой области страницы */
+    margin: 0; /* Убрать отступы */
+}
+h2.portfolio {
+    padding: 20px;
+    font-family: "Overpass", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 30px;
+  }
+
+.main-footer{
+    color: black;
+
+    background-color: rgb(248, 214, 170);
+    background-image: ();
+    background-position:  0 0;
+    background-repeat: repeat;
+}
+.footer-contacts a{
+    color:black;
+    text-decoration: underline;
+
+}
+
+.footer-contacts a:hover,
+.footer-contacts a:focus{
+    text-decoration: none;
+}
+
+.footer-social {
+    text-align: center;
+}
+
+
+.footer-social ul {
+    list-style: none;
+    
+ 
+}
+.social-button{
+    color: rgb(0, 0, 0);
+}
+.footer-copyright{
+    text-align: center;
+}
+
+.main-footer {
+    display: flex;
+    justify-content: space-around; /* Чтобы блоки равномерно распределились по горизонтали */
+}
+
+.footer-section {
+    flex: 1; /* Чтобы блоки занимали одинаковое пространство */
+}
+
+
+
+.slider-container {
+    width: 600px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    flex: 0 0 auto;
+    width: 600px;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.slider-btn-left {
+    left: 0;
+}
+
+.slider-btn-right {
+    right: 0;
+}
