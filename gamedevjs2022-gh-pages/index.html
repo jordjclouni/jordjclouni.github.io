@@ -1,0 +1,765 @@
+﻿<!doctype html>
+<head>
+<meta name="monetization" content="$pay.stronghold.co/1a1fbf27169a5334158b2c531b946427ceb">
+<meta name="viewport" content="width=device-width, initial-scale=0.5" />
+</head>
+<title>IT'S TOO RAW!</title>
+<img src=bonus.png id=bonus hidden>
+<img src=easymode.png id=easymode hidden>
+<img src=coil.png id=coil hidden>
+<img src=gas1.png id=gas1 hidden>
+<img src=gas1b.png id=gas1b hidden>
+<img src=gas1c.png id=gas1c hidden>
+<img src=gas2.png id=gas2 hidden>
+<img src=gas2b.png id=gas2b hidden>
+<img src=gas2c.png id=gas2c hidden>
+<img src=gas9.png id=gas9 hidden>
+<img src=ipfs.png id=ipfs hidden>
+<img src=mpl.png id=mpl hidden>
+<img src=near.png id=near hidden>
+<img src=pan2.png id=pan2 hidden>
+<img src=pan1.png id=pan1 hidden>
+<img src=panb1.png id=panb1 hidden>
+<img src=panc1.png id=panc1 hidden>
+<img src=panc2.png id=panc2 hidden>
+<img src=play.png id=play hidden>
+<img src=smoke1.png id=smoke1 hidden>
+<img src=smoke1b.png id=smoke1b hidden>
+<img src=smoke2.png id=smoke2 hidden>
+<img src=smoke2b.png id=smoke2b hidden>
+<img src=start.png id=start hidden>
+<img src=title.png id=title hidden>
+<img src=tooraw.png id=toorawimg hidden>
+<img src=toorawburnt.png id=toorawburntimg hidden>
+<img src=burnt.png id=burntimg hidden>
+<img src=ok.png id=ok hidden>
+<img src=hand.png id=hand hidden>
+<img src=rules1.png id=rules1 hidden>
+<img src=rules2.png id=rules2 hidden>
+<img src=rules3.png id=rules3 hidden>
+<img src=rules4.png id=rules4 hidden>
+<img src=rules5.png id=rules5 hidden>
+<img src=rules6.png id=rules6 hidden>
+<img src=rules7.png id=rules7 hidden>
+<img src=rules8.png id=rules8 hidden>
+<img src=rules9.png id=rules9 hidden>
+<img src=rules1e.png id=rules1e hidden>
+<img src=rules2e.png id=rules2e hidden>
+<img src=rules3e.png id=rules3e hidden>
+<img src=rules4e.png id=rules4e hidden>
+<img src=rules5e.png id=rules5e hidden>
+<img src=rules6e.png id=rules6e hidden>
+<img src=rules7e.png id=rules7e hidden>
+<img src=rules8e.png id=rules8e hidden>
+<img src=rules9e.png id=rules9e hidden>
+<img src=food1.png id=food1 hidden>
+<img src=food2.png id=food2 hidden>
+<img src=food3.png id=food3 hidden>
+<img src=food4.png id=food4 hidden>
+<img src=food5.png id=food5 hidden>
+<img src=food6.png id=food6 hidden>
+<img src=food7.png id=food7 hidden>
+<img src=food8.png id=food8 hidden>
+<img src=food9.png id=food9 hidden>
+<img src=foodend1.png id=foodend1 hidden>
+<img src=foodend2.png id=foodend2 hidden>
+<img src=foodend3.png id=foodend3 hidden>
+<img src=foodend4.png id=foodend4 hidden>
+<img src=foodend5.png id=foodend5 hidden>
+<img src=foodend6.png id=foodend6 hidden>
+<img src=foodend7.png id=foodend7 hidden>
+<img src=foodend8.png id=foodend8 hidden>
+<img src=foodend9.png id=foodend9 hidden>
+<img src=end.png id=end hidden>
+<img src=fails.png id=fails hidden>
+<img src=help.png id=help hidden>
+
+<body style="overflow:hidden;font-family:pangolin">.
+<canvas id=a style="position:fixed;top:50%;left:50%;transform:translateX(-50%)translateY(-50%);cursor:pointer;width:100vmin;height=100vmin;"></canvas>
+<a id=bonusesbutton href="bonuses.html"  style="position:fixed;bottom:-4px;left:50%;transform:translateX(-50%)"><img src="bonuses.png"></a>
+
+<script>
+bestscore = +localStorage["rawbest"] || 999;
+easy = +localStorage["raweasy"] || 0;
+gastype = localStorage["rawgas"] || "";
+state = 0;
+white = 0;
+win = 0;
+level = 1;
+fry = 0;
+released = 0;
+showtime = 0;
+showscore = 0;
+step = 0;
+md = 0;
+mdtimeout = 0;
+timer0 = 0;
+timerb0 = 0;
+timer = 0;
+ready = 0;
+tooraw = 0;
+burnt = 0;
+waittimer = 0;
+fail = 0;
+sawhelp = 0;
+
+
+if(!level) level = 1;
+
+levels = [
+  , // 0: no
+  [{min: 9, max: 10}], // 1: 9-10s
+  [{min: 5, max: 6}, {min: 5, max: 6}], // 2: 2 x 5-6s
+  [{min: 3, max: 3.5}, {min: 3, max: 3.5},{min: 3, max: 3.5}], // 3: 3 x 3-3.5s
+  [{min: 18, max: 20}], // 4: 18-20s
+  [{min: 0, max: 0}], // 5: wait 15s
+  [{min: 12, max: 13}, {min: 12, max: 13},{min: 12, max: 13},{min: 12, max: 13}], // 6: total: 12-13s
+  [{min: 9, max: 10}, {min: 9, max: 10},{min: 9, max: 10},{min: 9, max: 10},{min: 9, max: 10}], // 7: fry-rest-fry-rest-fry, total: 9-10s, rest 7-8s
+  [{min: 100, max: 105}], // 8: 100-105°
+  [{min: 2, max: 2}] // 9: 2s
+
+];
+
+if(easy){
+        
+  levels = [
+  
+    , // 0: no
+    [{min: 8, max: 11}], // 1: 8-11s
+    [{min: 4, max: 6}, {min: 4, max: 6}], // 2: 2 x 4-6s
+    [{min: 3, max: 4}, {min: 3, max: 4},{min: 3, max: 4}], // 3: 3 x 3-4s
+    [{min: 16, max: 20}], // 4: 18-20s
+    [{min: 0, max: 0}], // 5: wait 15s
+    [{min: 12, max: 14}, {min: 12, max: 14},{min: 12, max: 14},{min: 12, max: 14}], // 6: total: 12-14s
+    [{min: 8, max: 10}, {min: 8, max: 10},{min: 8, max: 10},{min: 8, max: 10},{min: 8, max: 10}], // 7: fry-rest-fry-rest-fry, total: 8-10s, rest 6-8s
+    [{min: 100, max: 110}], // 8: 100-110°
+    [{min: 2, max: 2}] // 9: 2s
+
+  ];
+
+}
+
+variants = [
+  0, // 0: no
+  0, // 1: no
+  0, // 2: flip (default)
+  "swap", // 3: swap,
+  0, // 4: no
+  "wait", // 5: wait
+  "total", // 6: total
+  "total+rest", // 7: total+rest
+  "deg", // 8: deg
+  0, // 9: no
+]
+
+scores = [
+  , // 0: no
+  [], // 1
+  [], // 2
+  [], // 3
+  [], // 4
+  [], // 5
+  [], // 6
+  [], // 7
+  [], // 8
+  [], // 9
+  
+];
+
+anim = 1;
+setAnim = () => {
+  anim = 3 - anim;
+  draw();
+  setTimeout(setAnim, 100 + Math.random() * 200);
+}
+
+
+onload = () => {
+  W = a.width = 600;
+  H = a.height = 600;
+  c = a.getContext("2d");
+  state = 0; // title
+  draw();
+  
+
+  setAnim();
+
+}
+
+draw = () => {
+
+  a.width ^= 0;
+
+  // Help
+  if(!easy && fail == 5 && level < 9 && !sawhelp){
+    state = 99;
+    c.drawImage(help, W/2 - 240, H/2 - 130);
+  }
+  
+  // end
+  else if(level == 10){
+    c.drawImage(end, W/2 - 250, H/2 - 270);
+    if(fail){
+      c.drawImage(fails, 10, H - 45);
+      c.font = '30px pangolin';
+      c.fillText(fail, 95, H - 18);
+    }
+    localStorage["rawbest"] = Math.min(+(localStorage["rawbest"] || 0), fail);
+  }
+
+  // Title
+  else if(state == 0){
+    c.drawImage(title, W/2 - 300, H/2 - 270);
+    c.drawImage(play, W/2 - 100, H/2 + 130);
+  }
+  
+  // bonus
+  else if(state == 1){
+    c.drawImage(bonus, W/2 - 100, H/2 - 100);
+    c.drawImage(coil, W/2 - 230, H/2 - 40);
+    c.drawImage(near, W/2 - 120, H/2 - 40);
+    c.drawImage(ipfs, W/2 + 30, H/2 - 40);
+    c.drawImage(mpl, W/2 + 140, H/2  - 40);
+    c.drawImage(start, W/2 - 100, H/2 + 50);
+  }
+  
+  // Levels
+  else if(state == 2 && !white){
+    c.drawImage(window["rules" + level + (easy ? "e" : "")], W/2 - 250, H/2 - 260);
+    if(level != 9) c.drawImage(window["gas" + anim + gastype], W/2 - 250, H/2 - 80);
+    if(level == 9) c.drawImage(gas9, W/2 - 250, H/2 - 80);
+    if(fail){
+      c.drawImage(fails, 10, H - 45);
+      c.font = '30px pangolin';
+      c.fillText(fail, 95, H - 18);
+    }
+    if(easy){
+      c.drawImage(easymode, W - 150, H - 45);
+    }
+    
+    // Idle
+    if(md == 0 && !flip){
+      if(level == 8)
+        c.drawImage(panb1, W/2 - 250, H/2 - 80);
+      else if(level == 9)
+        c.drawImage(window["panc" + anim], W/2 - 250, H/2 - 80);
+      else 
+        c.drawImage(pan1, W/2 - 250, H/2 - 80);
+      c.drawImage(window["food" + level], W/2 - 30, H/2 + 10 + (level == 5 ? -40 : 0));
+      c.globalAlpha = fry / 100;
+      c.drawImage(window["foodend" + level], W/2 - 30, H/2 + 10 + (level == 5 ? -40 : 0));
+      c.globalAlpha = 1;
+      if(level < 8) c.drawImage(pan2, W/2 - 250, H/2 - 80);
+    }
+    
+    // Pressed
+    if(md && !flip) {
+      if(level == 8)
+        c.drawImage(panb1, W/2 - 250, H/2 - 20);
+      else if(level == 9)
+        c.drawImage(window["panc" + anim], W/2 - 250, H/2 - 20);
+      else 
+      c.drawImage(pan1, W/2 - 250, H/2 - 20);
+      c.drawImage(window["food" + level], W/2 - 30, H/2 + 70  + (level == 5 ? -40 : 0) + (level == 9 ? -60 : 0));
+      c.globalAlpha = fry / 200;
+      c.drawImage(window["foodend" + level], W/2 - 30, H/2 + 70 + (level == 5 ? -40 : 0) + (level == 9 ? -60 : 0));
+      c.globalAlpha = 1;
+      if(level < 8) c.drawImage(pan2, W/2 - 250, H/2 - 20);
+      c.drawImage(window["smoke" + anim + (level == 8 ? "b" : "")], W/2 - 300, H/2 - 100 + (level == 8 ? -50 : 0));
+    }
+    
+    // 1....2.....3
+    if(md && !showscore && !flip && step == 0){
+      timer = (new Date() - timer0);
+      if(timer < 3000){
+        c.font = '50px pangolin';
+        c.globalAlpha = Math.max(((1 / (timer / 1000)) - (level == 0 ? 0.3 : level == 8 ? 0.1 : level == 9 ? 1.5 : 0.5)), 0);
+        c.fillText((timer * (level == 8 ? 7.7 : 1)/1000).toFixed(level == 8 ? 0 : level == 9 ? 1 : 2) + (level == 8 ? " °C" : ""), 150, 250);
+        c.globalAlpha = 1;
+      }
+    }
+    
+    // Show time 
+    if(showtime && !showscore && !flip){
+      str = "";
+      if(scores[level].length == 1) c.font = '50px pangolin';
+      if(scores[level].length == 2) c.font = '40px pangolin';
+      if(scores[level].length > 2) c.font = '30px pangolin';
+      c.textAlign = 'center';
+      
+      
+      if(level == 7){
+        str = "cook = " + ((scores[7][0] + scores[7][2] + scores[7][4])/1000).toFixed(2) + "s"
+        c.fillText(str, W/2, 240);
+        str = "rest = " + ((scores[7][1] + scores[7][3])/1000).toFixed(2) + "s";
+        c.fillText(str, W/2, 270);
+      }
+      
+      else if(level == 8){
+        str = Math.round(scores[8][0] * 7.7 / 1000).toFixed(0) + " °C";
+        c.fillText(str, W/2, 240);
+      }
+      
+      else {
+      
+        for(i in scores[level]){
+          str += (+i ? " + " : "") + (scores[level][i]/1000).toFixed(level == 9 ? 1 : 2)
+        }
+        if(level == 6) str += " = " + ((scores[level][0] + scores[level][1] + scores[level][2] + scores[level][3])/1000).toFixed(2);
+        c.fillText(str, W/2, 250);
+        
+      }
+      c.textAlign = 'start';
+    }
+    
+    // Show score
+    if(showscore && !flip){
+              
+      tooraw = 0;
+      burnt = 0;
+    
+      if(easy){
+      
+        if(level == 5){
+          if(scores[level][0] > 0 || fry > 0) { burnt = 1; win = 0 }
+          else { burnt = 0; win = 1}
+          console.log(scores[level], burnt);
+        }
+        
+        else if(level == 6){
+          if(scores[level][0] + scores[level][1] + scores[level][2] + scores[level][3] < 12*1000){
+            tooraw = 1;
+            win = 0;
+          }
+          else if(scores[level][0] + scores[level][1] + scores[level][2] + scores[level][3] > 14*1000){
+            burnt = 1;
+            win = 0;
+          }
+          
+        }
+        
+        else if(level == 7){
+          
+          if((scores[7][0] + scores[7][2] + scores[7][4]) < 8 * 1000 
+          || (scores[7][0] + scores[7][2] + scores[7][4]) > 10 * 1000
+          || (scores[7][1] + scores[7][3]) < 6 * 1000
+          || (scores[7][1] + scores[7][3]) > 8 * 1000
+          ){
+            burnt = 1;
+            tooraw = 1;
+            win = 0;
+          }
+        }
+        
+        else if(level == 8){
+          if((Math.round(scores[8][0] * 7.7 / 1000) * 1000 < 100 * 1000) || ((Math.round(scores[8][0] * 7.7 / 1000) * 1000 > 110 * 1000))){
+            burnt = 1;
+            tooraw = 1;
+            win = 0;
+          }
+        }
+        
+        else if(level == 9){
+          if((scores[9][0]/1000).toFixed(1) == "2.0"){
+            win = 1;
+          }
+          else {
+            burnt = 1;
+            tooraw = 1;
+            win = 0;
+          }
+        }
+        
+        else {
+          for(i in scores[level]){
+            if(scores[level][i] < levels[level][i].min * 1000){
+              tooraw = 1;
+              win = 0;
+            }
+            else if(scores[level][i] >= levels[level][i].min * 1000 && scores[level][i] <= levels[level][i].max * 1000){
+              // win
+            }
+            else if(scores[level][i]  > levels[level][i].max * 1000){
+              burnt = 1;
+              win = 0;
+            }
+          }
+        }
+      
+      }
+      
+      else {
+
+        if(level == 5){
+          if(scores[level][0] > 0 || fry > 0) { burnt = 1; win = 0 }
+          else { burnt = 0; win = 1}
+          console.log(scores[level], burnt);
+        }
+        
+        else if(level == 6){
+          if(scores[level][0] + scores[level][1] + scores[level][2] + scores[level][3] < 12*1000){
+            tooraw = 1;
+            win = 0;
+          }
+          else if(scores[level][0] + scores[level][1] + scores[level][2] + scores[level][3] > 13*1000){
+            burnt = 1;
+            win = 0;
+          }
+          if(!scores[level].find(a=>a>=2*1000 && a<=3*1000) && !scores[level].find(a=>a>=5*1000 && a<=6*1000)){
+            burnt = 1;
+            tooraw = 1;
+            win = 0;
+          }
+        }
+        
+        else if(level == 7){
+          
+          if((scores[7][0] + scores[7][2] + scores[7][4]) < 9 * 1000 
+          || (scores[7][0] + scores[7][2] + scores[7][4]) > 10 * 1000
+          || (scores[7][1] + scores[7][3]) < 7 * 1000
+          || (scores[7][1] + scores[7][3]) > 8 * 1000
+          ){
+            burnt = 1;
+            tooraw = 1;
+            win = 0;
+          }
+        }
+        
+        else if(level == 8){
+          if((Math.round(scores[8][0] * 7.7 / 1000) * 1000 < 100 * 1000) || ((Math.round(scores[8][0] * 7.7 / 1000) * 1000 > 105 * 1000))){
+            burnt = 1;
+            tooraw = 1;
+            win = 0;
+          }
+        }
+        
+        else if(level == 9){
+          if((scores[9][0]/1000).toFixed(1) == "2.0"){
+            win = 1;
+          }
+          else {
+            burnt = 1;
+            tooraw = 1;
+            win = 0;
+          }
+        }
+        
+        else {
+          for(i in scores[level]){
+            if(scores[level][i] < levels[level][i].min * 1000){
+              tooraw = 1;
+              win = 0;
+            }
+            else if(scores[level][i] >= levels[level][i].min * 1000 && scores[level][i] <= levels[level][i].max * 1000){
+              // win
+            }
+            else if(scores[level][i]  > levels[level][i].max * 1000){
+              burnt = 1;
+              win = 0;
+            }
+          }
+        }
+      }
+      
+      if(tooraw && burnt) {
+        c.drawImage(toorawburntimg, W/2 - 160, H/2 - 100 + (level == 8 ? -30 : 0));
+      }
+      else if(tooraw && !burnt){
+        c.drawImage(toorawimg, W/2 - 100, H/2 - 100);
+      }
+      else if(burnt && !tooraw){
+        c.drawImage(burntimg, W/2 - 100, H/2 - 100);
+      }
+      else if(!tooraw && !burnt) {
+        win = 1;
+        c.drawImage(ok, W/2 - 100, H/2 - 100 + (level == 8 ? -30 : 0));
+      }
+
+      c.drawImage(hand, W/2 + 200, H/2 - 100);
+    }
+    
+    // flip animation (default)
+    if(!md && flip && (!variants[level] || level == 7)){
+      if(level != 8) c.drawImage(pan1, W/2 - 250, H/2 - 60);
+      else c.drawImage(pan1, W/2 - 250, H/2 - 60);
+      c.save();
+      c.translate(W/2 + 110, H/2 - 30);
+      c.rotate((flip-20+120)/6 + 30);
+      c.drawImage(window["food" + level], 0, 0);
+      c.globalAlpha = fry / 100;
+      c.drawImage(window["foodend" + level], 0, 0);
+      c.globalAlpha = 1;
+      c.restore();
+      if(level != 8) c.drawImage(pan2, W/2 - 250, H/2 - 60);
+    }
+    
+    // swap animation
+    if(!md && flip && (variants[level] == "swap" || variants[level] == "total")){
+      if(level != 8) c.drawImage(pan1, W/2 - 250, H/2 - 60);
+      else c.drawImage(pan1, W/2 - 250, H/2 - 60);
+      c.save();
+      c.translate(W/2 + 110, H/2 - 30);
+      if(flip > 9){
+        c.drawImage(window["food" + level], (20-flip) * 10, -(20-flip) * 10);
+        c.globalAlpha = fry / 100;
+        c.drawImage(window["foodend" + level], (20-flip) * 10, -(20-flip) * 10);
+      }
+      if(flip <= 9){
+        c.drawImage(window["food" + level], -220 + (9-flip) * 10, -90 + (9-flip) * 10);
+        fry = 0;
+      }
+      c.globalAlpha = 1;
+      c.restore();
+      if(level != 8) c.drawImage(pan2, W/2 - 250, H/2 - 60);
+    }
+    
+  }
+  
+    
+  if(easy){
+    c.drawImage(easymode, W - 150, H - 45);
+  }
+    
+}
+
+onclick = (e) => {
+
+  if(!showtime && !white && !showscore && !flip){
+    
+    X = e.pageX;
+    Y = e.pageY;
+    
+    // Title
+    if(state == 0){
+      state = 2;
+      fry = 0;
+      released = 0;
+      showscore = 0;
+      step = 0;
+      draw();
+      md = 0;
+      ready = 0;
+      setTimeout(()=>{ready = 1}, 200);
+      music();
+      setInterval(music, 3600);
+      
+      N = new AudioContext();
+      bufferSize = 4096;
+      whiteNoise = N.createScriptProcessor(bufferSize, 1, 1);
+      whiteNoise.onaudioprocess = function(e) {
+          var output = e.outputBuffer.getChannelData(0);
+          for (var i = 0; i < bufferSize; i++) {
+              output[i] = (Math.random() * 2 - 1)/20;
+          }
+      }
+      
+    }
+    
+    else if(state == 99){
+      state = 2;
+      sawhelp = 1;
+      ready = 0;
+      setTimeout(()=>{ready = 1}, 200);
+    }
+  }
+}
+
+
+
+onmousedown = ontouchstart = () => {
+ 
+  if(ready && !white && state == 2 && !showtime && !showscore && !flip && step < levels[level].length){
+ 
+    if(level == 7 && scores[7][0]){
+      timer = (new Date()) - timerb0 + 10;
+      scores[level][step] = timer;
+      step++;
+    }
+    
+    mdtimeout = setTimeout(()=>{
+      md = 1;
+      timer0 = new Date();
+    }, 34);
+    
+    whiteNoise.connect(N.destination);
+  }
+}
+
+
+onmouseup = ontouchend = () => {
+  if(state == 2 && md && !white && !showtime && !showscore && !flip && step < levels[level].length){
+  
+    whiteNoise.disconnect(N.destination);
+     
+    clearTimeout(mdtimeout);
+    if(md) released = 1;
+    timer = (new Date()) - timer0 + 10;
+    scores[level][step] = timer;
+    md = 0;
+    draw();
+    step++;
+    
+    // Flip
+    if(state == 2 && step < levels[level].length){
+      flip = 20;
+    }
+    
+    // Score
+    if(state == 2 && step == levels[level].length){
+      showtime = 1;
+      ready = 0;
+      draw();
+      setTimeout(()=>{
+        showscore = 1;
+        draw();
+      }, 1000 + scores[level].length * 500);
+      
+      setTimeout(()=>{
+        white = 1;
+        ready = 0;
+        scores[level] = [];
+        draw();
+      }, 1000 + scores[level].length * 500 + 2000);
+      
+      setTimeout(()=>{
+        state = 2;
+        if(win == 1) {
+          level ++;
+        }
+        else {
+          fail++;
+        }
+        waittimer = 0;
+        fry = 0;
+        released = 0;
+        showtime = 0;
+        showscore = 0;
+        white = 0;
+        md = 0;
+        step = 0;
+        ready = 0;
+        setTimeout(()=>{ready = 1}, 200);
+        timer0 = new Date();
+        timerb0 = new Date();
+        md = 0;
+        draw();
+      }, 1000 + scores[level].length * 500 + 2500);
+    }
+  }
+  if(level == 7){
+    timerb0 = new Date();
+  }
+}
+
+oncontextmenu = (e) => {
+  e.preventDefault();
+  return false;
+}
+
+
+fry = 0;
+setInterval(()=>{
+  if(state == 2 && md && !flip){
+    fry ++;
+    draw();
+  }
+
+  if(level == 5 && !fry) {
+  
+    waittimer++;
+    
+    if(waittimer == 455){
+    
+      scores[level][0] = 0;
+    
+      setTimeout(()=>{
+        showscore = 1;
+        draw();
+      }, 1000 + scores[level].length * 500);
+      
+      setTimeout(()=>{
+        white = 1;
+        draw();
+      }, 1000 + scores[level].length * 500 + 2000);
+      
+      setTimeout(()=>{
+        state = 2;
+        if(win == 1) {
+          level ++;
+        }
+        waittimer = 0;
+        fry = 0;
+        released = 0;
+        showtime = 0;
+        showscore = 0;
+        white = 0;
+        md = 0;
+        step = 0;
+        ready = 0;
+        setTimeout(()=>{ready = 1}, 200);
+        draw();
+
+      }, 1000 + scores[level].length * 500 + 2500); 
+    }
+  }
+    
+    
+},33);
+
+flip = 0;
+setInterval(()=>{
+  if(flip > 0){
+    flip--;
+    if(flip == 0){ fry = variants[level] ? 0 : 10; }
+    draw();
+  }
+},33);
+
+
+mm=(notes,center,duration,decaystart,decayduration,interval,volume,waveform,i)=>{
+  with(A=new AudioContext)
+    with(G=createGain())
+      for(i of notes){
+        with(O=createOscillator()){
+          connect(G),
+          G.connect(destination),
+          start(i[0]*interval),
+          frequency.setValueAtTime(center*1.06**(13-i[1]),i[0]*interval),
+          type=waveform,
+          gain.setValueAtTime(volume,i[0]*interval),
+          gain.setTargetAtTime(1e-5,i[0]*interval+decaystart,decayduration),
+          stop(i[0]*interval+duration);
+        }
+     }
+}
+
+
+
+music = () => mm([[0,19],[8,19],[1,18],[2,19],[4,16],[6,19],[7,18],[10,14]],400,.29,.28,.005,.3,.1,'sine');
+
+
+
+</script>
+
+<style>
+body, canvas { background: #fff }
+@font-face {
+  font-family: pangolin;
+  src: url(pangolin.ttf);
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+*:focus {
+    outline: none !important;
+}
+#bonusesbutton { opacity: 0.5; }
+#bonusesbutton:hover { opacity: 1; }
+</style>

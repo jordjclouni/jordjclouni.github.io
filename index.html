@@ -17,17 +17,20 @@
     <body>
 
         
+        
         <body>
             <div class="fixed-form">
                 <div class="form-header">
                     ЗАКАЗАТЬ ЗВОНОК
                 </div>
-                <form action="#" method="post">
+                <form id="orderCallForm" action="#" method="post">
                     <label for="name">Ваше имя</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required pattern="[А-Яа-я ]+">
+                    <small id="nameHelp" class="form-text text-muted">Только буквы кириллицы</small>
                     
                     <label for="phone">Номер телефона</label>
-                    <input type="tel" id="phone" name="phone" required pattern="^\+?[0-9\s\-\(\)]+$">
+                    <input type="tel" id="phone" name="phone" required pattern="^\+375\d{2}\d{7}$">
+                    <small id="phoneHelp" class="form-text text-muted">Формат: +375*********</small>
                     
                     <div class="consent">
                         <input type="checkbox" id="consent" name="consent" required>
@@ -37,7 +40,31 @@
                     <button type="submit">ЗАКАЗАТЬ ЗВОНОК</button>
                 </form>
             </div>
+        
+            <script>
+                // Get the form element
+                const form = document.getElementById('orderCallForm');
+        
+                // Add an event listener to the form submission
+                form.addEventListener('submit', function(event) {
+                    // Prevent the default form submission behavior
+                    event.preventDefault();
+        
+                    // Get the name input value
+                    const nameInput = document.getElementById('name');
+                    const name = nameInput.value;
+        
+                    // Display the alert
+                    alert(`Ожидайте звонок, ${name}`);
+        
+                    // Clear the form fields
+                    form.reset();
+                });
+            </script>
         </body>
+        
+        
+        
         
         <!--верхняя панель сайта-->
         <header class="main-header">
@@ -50,13 +77,19 @@
                         <li><a href="#section1">Главная</a></li>
                         <li><a href="#section2">Обо мне</a></li>
                         <li><a href="#section3">Услуги</a></li>
-                        <li><a href="#section4">Портфолио</a></li>
+                        <li><a href="#section4">Портф.</a></li>
                         <li><a href="#section5">Контакты</a></li>
                         <li><a href="grid.html">grid</a></li>
                         <li><a href="flex.html">flex</a></li>
                         <li><a href="lr10.html">10-12</a></li>
                         <li><a href="lr13.html">13-14</a></li>
-                        <li><a href="pr.html">Практика</a></li>
+                        <li><a href="lr14.html">15</a></li>
+                        <li><a href="Rock-to-forget-game-main/index.html">Игра1</a></li>                       
+                        <li><a href="gamedevjs2022-gh-pages/index.html">Игра</a></li>
+                        <li><a href="lr17.html">17</a></li>
+
+                        <li><a href="pr.html">Пр</a></li>
+
                     </ul>
                 </nav>
             </div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Задания по JavaScript</title>
+  
+</head>
+  <body>
+    <h1>Использование классов в JavaScript</h1>
+    <div id="output"></div>
+
+    <!--<script src="script15.js"></script>-->
+    
+
+
+    <h1>Книги</h1>
+    <div id="books"></div>
+
+    <script>
+        // Класс Книга
+        class Book {
+            constructor(title, author, publisher, year) {
+                this.title = title;
+                this.author = author;
+                this.publisher = publisher;
+                this.year = year;
+            }
+
+            // Метод для вывода информации о книге
+            getBookInfo() {
+                return `Название: ${this.title}, Автор: ${this.author}, Издатель: ${this.publisher}, Год: ${this.year}`;
+            }
+        }
+
+        // Создание экземпляров книг
+        let books = [
+            new Book("Книга 1", "Автор 1", "Издатель 1", 2020),
+            new Book("Книга 2", "Автор 2", "Издатель 2", 2021),
+            new Book("Книга 3", "Автор 3", "Издатель 3", 2022),
+            new Book("Книга 4", "Автор 4", "Издатель 4", 2023)
+        ];
+
+        // Вывод информации о книгах на страницу
+        const booksDiv = document.getElementById('books');
+        books.forEach(book => {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = book.getBookInfo();
+            booksDiv.appendChild(paragraph);
+        });
+    </script>
+
+  </body>
+</html>
